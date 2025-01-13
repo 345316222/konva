@@ -20,7 +20,7 @@ export class Layer extends Container {
 			// uni-app 传递过来的context
 			throw new Error('layer need context')
 		}
-        this.canvas = new Canvas_1.SceneCanvas(config.context);
+        this.canvas = new SceneCanvas(config.context);
         this.hitCanvas = new HitCanvas({
             pixelRatio: 1,
         });
