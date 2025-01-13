@@ -362,7 +362,7 @@ export const Util = {
         }
     },
     createCanvasElement() {
-        const canvas = document.createElement('canvas');
+        const canvas = wx.createOffscreenCanvas({ type: '2d'});
         try {
             canvas.style = canvas.style || {};
         }

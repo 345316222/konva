@@ -383,9 +383,14 @@ CONTEXT_PROPERTIES.forEach(function (prop) {
 export class SceneContext extends Context {
     constructor(canvas, { willReadFrequently = false } = {}) {
         super(canvas);
-        this._context = canvas._canvas.getContext('2d', {
-            willReadFrequently,
-        });
+        if(canvas._context) {
+			// uni-app _context 从外部传入
+			this._context = canvas._context
+		} else {
+			this._context = canvas._canvas.getContext('2d', {
+			    willReadFrequently,
+			});
+        }
     }
     _fillColor(shape) {
         const fill = shape.fill();
