@@ -64,13 +64,13 @@ export class Canvas {
 
     this._canvas = Util.createCanvasElement();
     // set inline styles
-    this._canvas.style.padding = '0';
-    this._canvas.style.margin = '0';
-    this._canvas.style.border = '0';
-    this._canvas.style.background = 'transparent';
-    this._canvas.style.position = 'absolute';
-    this._canvas.style.top = '0';
-    this._canvas.style.left = '0';
+    // this._canvas.style.padding = '0';
+    // this._canvas.style.margin = '0';
+    // this._canvas.style.border = '0';
+    // this._canvas.style.background = 'transparent';
+    // this._canvas.style.position = 'absolute';
+    // this._canvas.style.top = '0';
+    // this._canvas.style.left = '0';
   }
 
   /**
