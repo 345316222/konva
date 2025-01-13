@@ -700,9 +700,9 @@ export class Stage extends Container {
 Stage.prototype.nodeType = STAGE;
 _registerNode(Stage);
 Factory.addGetterSetter(Stage, 'container');
-Factory_1.Factory.addGetterSetter(Stage, 'pointerdown');
-Factory_1.Factory.addGetterSetter(Stage, 'pointerup');
-Factory_1.Factory.addGetterSetter(Stage, 'pointermove');
+Factory.addGetterSetter(Stage, 'pointerdown');
+Factory.addGetterSetter(Stage, 'pointerup');
+Factory.addGetterSetter(Stage, 'pointermove');
 if (Konva.isBrowser) {
     document.addEventListener('visibilitychange', () => {
         stages.forEach((stage) => {
