@@ -16,11 +16,7 @@ const HASH = '#', BEFORE_DRAW = 'beforeDraw', DRAW = 'draw', INTERSECTION_OFFSET
 export class Layer extends Container {
     constructor(config) {
         super(config);
-        if(!config.context) {
-			// uni-app 传递过来的context
-			throw new Error('layer need context')
-		}
-        this.canvas = new SceneCanvas(config.context);
+        this.canvas = new SceneCanvas();
         this.hitCanvas = new HitCanvas({
             pixelRatio: 1,
         });

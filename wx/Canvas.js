@@ -31,12 +31,7 @@ export class Canvas {
         const conf = config || {};
         const pixelRatio = conf.pixelRatio || Konva.pixelRatio || getDevicePixelRatio();
         this.pixelRatio = pixelRatio;
-        if (config.context) {
-            // uni-app传递进来的， 不需要在创建canvas
-            this._context = config.context
-        } else {
-            this._canvas = Util.createCanvasElement();
-        }
+        this._canvas = Util.createCanvasElement();
     }
     getContext() {
         return this.context;
@@ -50,14 +45,14 @@ export class Canvas {
         this.setSize(this.getWidth() / previousRatio, this.getHeight() / previousRatio);
     }
     setWidth(width) {
-        // this.width = this._canvas.width = width * this.pixelRatio;
-        // this._canvas.style.width = width + 'px';
+        this.width = this._canvas.width = width * this.pixelRatio;
+        this._canvas.style.width = width + 'px';
         const pixelRatio = this.pixelRatio, _context = this.getContext()._context;
         _context.scale(pixelRatio, pixelRatio);
     }
     setHeight(height) {
-        // this.height = this._canvas.height = height * this.pixelRatio;
-        // this._canvas.style.height = height + 'px';
+        this.height = this._canvas.height = height * this.pixelRatio;
+        this._canvas.style.height = height + 'px';
         const pixelRatio = this.pixelRatio, _context = this.getContext()._context;
         _context.scale(pixelRatio, pixelRatio);
     }
@@ -90,7 +85,7 @@ export class Canvas {
 }
 Factory.addGetterSetter(Canvas, 'pixelRatio', undefined, getNumberValidator());
 export class SceneCanvas extends Canvas {
-    constructor(config = { width: 0, height: 0, willReadFrequently: false, context: null }) {
+    constructor(config = { width: 0, height: 0, willReadFrequently: false }) {
         super(config);
         this.context = new SceneContext(this, {
             willReadFrequently: config.willReadFrequently,

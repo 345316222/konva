@@ -98,7 +98,7 @@ export class Stage extends Container {
         this._pointerPositions = [];
         this._changedPointerPositions = [];
         this._buildDOM();
-        // this._bindContentEvents();
+        this._bindContentEvents();
         stages.push(this);
         this.on('widthChange.konva heightChange.konva', this._resizeDOM);
         this.on('visibleChange.konva', this._checkVisibility);
@@ -658,21 +658,21 @@ export class Stage extends Container {
             width: this.width(),
             height: this.height(),
         });
-        // if (!Konva.isBrowser) {
-        //     return;
-        // }
-        // const container = this.container();
-        // if (!container) {
-        //     throw 'Stage has no container. A container is required.';
-        // }
-        // container.innerHTML = '';
-        // this.content = document.createElement('div');
-        // this.content.style.position = 'relative';
-        // this.content.style.userSelect = 'none';
-        // this.content.className = 'konvajs-content';
-        // this.content.setAttribute('role', 'presentation');
-        // container.appendChild(this.content);
-        // this._resizeDOM();
+        if (!Konva.isBrowser) {
+            return;
+        }
+        const container = this.container();
+        if (!container) {
+            throw 'Stage has no container. A container is required.';
+        }
+        container.innerHTML = '';
+        this.content = document.createElement('div');
+        this.content.style.position = 'relative';
+        this.content.style.userSelect = 'none';
+        this.content.className = 'konvajs-content';
+        this.content.setAttribute('role', 'presentation');
+        container.appendChild(this.content);
+        this._resizeDOM();
     }
     cache() {
         Util.warn('Cache function is not allowed for stage. You may use cache only for layers, groups and shapes.');
@@ -687,22 +687,10 @@ export class Stage extends Container {
         });
         return this;
     }
-    getPointerdown() {
-		return this._pointerdown
-	}
-	getPointermove() {
-		return this._pointermove
-	}
-	getPointerup() {
-		return this._pointerup
-	}
 }
 Stage.prototype.nodeType = STAGE;
 _registerNode(Stage);
 Factory.addGetterSetter(Stage, 'container');
-Factory.addGetterSetter(Stage, 'pointerdown');
-Factory.addGetterSetter(Stage, 'pointerup');
-Factory.addGetterSetter(Stage, 'pointermove');
 if (Konva.isBrowser) {
     document.addEventListener('visibilitychange', () => {
         stages.forEach((stage) => {
